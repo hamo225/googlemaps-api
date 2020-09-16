@@ -21,6 +21,7 @@
     <h1>Geocoding is when you take a written address and convert it to coordinates. Reverse geocoding is when you have the coordinates and you convert them into a name.</h1>
     <h2>The output data is stored in JSON format in the url and when processing the url and decoding JSON with PHP we use json_decode. When we process
         it with JS/Jquery we use AJAX to carry out cross domain rquests for the data in the url</h2>
+    <p>Always rememebr to put restrictions on the API keys when using them. Especially if you publish them to sites like GITHUB.</p>
 
 
 
@@ -35,6 +36,15 @@
             type: "GET",
             success: function(data) {
                 console.log(data);
+
+                $.each(data["results"][0]["address_components"], function(key, value) {
+
+                    if (value["types"][0]) {
+                        alert(value["short_name"]);
+                    }
+
+
+                })
             }
 
         })
